@@ -1,6 +1,7 @@
 let tareas = [];
 const lista_tareas = document.querySelector("#lista");
 const btn = document.querySelector("#agregar");
+const tarea_input =document.querySelector("#input")
 
 const agregar_tareas = () => {
   let html = "";
@@ -14,8 +15,8 @@ const agregar_tareas = () => {
 agregar_tareas();
 
 btn.addEventListener("click", () => {
-  let nueva_tarea = document.querySelector("input").value;
-  nombres.push(nueva_tarea);
-
+  let nueva_tarea = tarea_input.value;
+  tareas.push(nueva_tarea);
+  tarea_input.value = "";
   agregar_tareas();
 });
