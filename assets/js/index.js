@@ -1,11 +1,20 @@
 let tareas = [
-    {id: 301, nombre:"Asistir a clases", realizado: false,},
-    {id: 302, nombre:"Hacer la tarea", realizado: false,},
-    {id: 303, nombre:"Cocinar la cena", realizado: false,}
+  { id: 301, nombre: "Asistir a clases", realizado: false },
+  { id: 302, nombre: "Hacer la tarea", realizado: false },
+  { id: 303, nombre: "Cocinar la cena", realizado: false },
 ];
 const lista_tareas = document.querySelector("#lista");
 const btn = document.querySelector("#agregar");
-const tarea_input =document.querySelector("#input")
+
+const actualizar = (id) => {
+  let tareaIndex = tareas.findIndex((tarea) => tarea.id === id);
+  console.log(tareaIndex);
+  tareas[tareaIndex].realizado = !tareas[tareaIndex].realizado;
+  let tareasRealizados = tareas.filter((tarea) => tarea.realizado == true);
+  console.log(tareasRealizados);
+  let realizadas = document.querySelector("#realizadas");
+  realizadas.innerHTML = `Realizadas: <p class="fw-bold">${tareasRealizados.length}</p>`;
+};
 
 const agregar_tareas = () => {
   let html = "";
@@ -20,8 +29,11 @@ const agregar_tareas = () => {
             tarea.id
           })'><i class="fa-solid fa-trash-can"></i></button></div> 
           </div>
-          `;;
+          `;
   }
+
+  let cantidad = document.querySelector("#cantidad");
+  cantidad.innerHTML = `Total: <p class="fw-bold">${tareas.length}</p>`;
 
   lista_tareas.innerHTML = html;
 };
@@ -29,21 +41,27 @@ const agregar_tareas = () => {
 agregar_tareas();
 
 btn.addEventListener("click", () => {
-  let nueva_tarea = tarea_input.value;
-  tareas.push(nueva_tarea);
-  tarea_input.value = "";
+  let value = document.querySelector("#input").value;
+  let num1 = 100;
+  let num2 = 999;
+  let num_aleatorio = Math.floor(Math.random() * (num2 - num1 + 1)) + num1;
+  let tareas_pendientes = {
+    id: num_aleatorio,
+    nombre: value,
+    realizado: false,
+  };
+
+  tareas.push(tareas_pendientes);
+  /*   tarea_input.value = ""; */
   agregar_tareas();
 });
 
+agregar_tareas();
 
-const eliminar = (id)=>{
+const eliminar = (id) => {
+  let tareaindex = tareas.findIndex((tarea) => tarea.id === id);
 
-let tareaindex = tareas.findIndex((tarea)=> tarea.id === id
+  tareas.splice(tareaindex, 1);
 
-)
-
-tareas.splice(tareaindex,1)
-
-agregar_tareas()
-
-}
+  agregar_tareas();
+};
