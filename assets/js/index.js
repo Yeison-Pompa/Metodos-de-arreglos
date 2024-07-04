@@ -25,7 +25,7 @@ const agregar_tareas = () => {
           <div class="col-2"><input type='checkbox' onclick='actualizar(${
             tarea.id
           })' ${tarea.realizado === true ? "checked" : null}></div>
-          <div class="col-2"><button class="mb-1 btn btn-danger" onclick='eliminar(${
+          <div class="col-2"><button class="mb-1 btn btn-danger rounded-circle" onclick='eliminar(${
             tarea.id
           })'><i class="fa-solid fa-trash-can"></i></button></div> 
           </div>
